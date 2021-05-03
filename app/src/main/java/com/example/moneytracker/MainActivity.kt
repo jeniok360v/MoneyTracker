@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     fun generateData(): List<String>{
         val data: MutableList<String> = ArrayList()
+        data.add("todo gradient colors")
         for(i in 1..10){
             data.add("wallet_" + i.toString())
         }
