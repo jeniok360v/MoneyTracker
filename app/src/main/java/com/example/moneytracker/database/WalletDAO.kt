@@ -1,6 +1,7 @@
 package com.example.moneytracker.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -13,5 +14,8 @@ interface WalletDAO {
 
     @Insert
     fun insertAll(vararg wallet : Wallet)
+
+    @Delete
+    fun deleteWallet(wallet: Wallet)
 
 }
