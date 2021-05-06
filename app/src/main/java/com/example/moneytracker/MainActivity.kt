@@ -3,6 +3,9 @@ package com.example.moneytracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -34,9 +37,26 @@ class MainActivity : AppCompatActivity() {
         walletRecyclerView.layoutManager = LinearLayoutManager(this)
         //walletRecyclerView.adapter = WalletRecyclerAdapter(listOf("e_wallet_1", "e_wallet_2", "wallet_3"))
         walletRecyclerView.adapter = WalletRecyclerAdapter(generateData())
-
+        //pizdjec
     }
 
+
+/*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        btnAdd.setOnClickListener {
+            val dao = EventDatabase.getInstance(this.context!!)?.eventDao()
+            GlobalScope.launch {
+                dao?.getAll()
+            }
+            listener?.goToNewEventFragment()
+        }
+        walletRecyclerView.layoutManager = LinearLayoutManager(activity)
+        walletRecyclerView.itemAnimator = DefaultItemAnimator()
+        walletRecyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+    }
+ */
 
     fun generateData(): List<String>{
         val data: MutableList<String> = ArrayList()
