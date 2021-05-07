@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moneytracker.database.Wallet
 
 
 class WalletRecyclerAdapter(private val dataSet: List<String>) :
@@ -17,7 +18,8 @@ class WalletRecyclerAdapter(private val dataSet: List<String>) :
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
-
+        val walletList: MutableList<Wallet> = ArrayList()
+//.......
         init {
 
             // Define click listener for the ViewHolder's View.
@@ -43,6 +45,8 @@ class WalletRecyclerAdapter(private val dataSet: List<String>) :
         // contents of the view with that element
         viewHolder.textView.text = dataSet[position]
     }
+
+
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size

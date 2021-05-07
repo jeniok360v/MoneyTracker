@@ -1,7 +1,9 @@
 package com.example.moneytracker
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,6 +14,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.moneytracker.database.Wallet
 import com.example.moneytracker.database.WalletDatabase
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -37,7 +40,14 @@ class MainActivity : AppCompatActivity() {
         walletRecyclerView.layoutManager = LinearLayoutManager(this)
         //walletRecyclerView.adapter = WalletRecyclerAdapter(listOf("e_wallet_1", "e_wallet_2", "wallet_3"))
         walletRecyclerView.adapter = WalletRecyclerAdapter(generateData())
-        //pizdjec
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val tmpAddWallet = findViewById<FloatingActionButton>(R.id.tmpAddWallet)
+        tmpAddWallet.setOnClickListener{
+
+        }
     }
 
 
