@@ -1,4 +1,4 @@
-package pl.project.moneyTracker.libraries;
+package pl.cyfrogen.moneyTracker.libraries;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import pl.example.budget.R;
+import pl.cyfrogen.budget.R;
 
 public class Gauge extends View {
 

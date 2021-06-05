@@ -1,4 +1,4 @@
-package pl.project.moneyTracker;
+package pl.cyfrogen.moneyTracker;
 
 
 import android.support.v4.app.Fragment;

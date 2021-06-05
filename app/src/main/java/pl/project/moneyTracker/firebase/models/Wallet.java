@@ -1,4 +1,4 @@
-package pl.project.moneyTracker.firebase.models;
+package pl.cyfrogen.moneyTracker.firebase.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

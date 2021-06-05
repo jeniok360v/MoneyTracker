@@ -1,13 +1,15 @@
-package pl.project.moneyTracker.firebase;
+package pl.cyfrogen.moneyTracker.firebase;
 
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListDataSet<T> {
+    private ArrayList<String> ids = new ArrayList<>();
     List<T> list;
-    private Operation lastOperation;
+    private Operation lastOperation = Operation.NOTHING;
     private int index;
     private int index2;
 
@@ -17,7 +19,7 @@ public class ListDataSet<T> {
 
 
     public List<T> getList() {
-        return list;
+        return Collections.unmodifiableList(list);
     }
 
     public void setItemChanged(int index) {
@@ -62,10 +64,15 @@ public class ListDataSet<T> {
 
     public void clear() {
         list.clear();
+        ids.clear();
         lastOperation = Operation.ITEMS_CLEARED;
     }
 
     public Operation getLastOperation() {
         return lastOperation;
+    }
+
+    public ArrayList<String> getIDList() {
+        return ids;
     }
 }

@@ -1,4 +1,4 @@
-package pl.project.moneyTracker.libraries;
+package pl.cyfrogen.moneyTracker.libraries;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,7 +9,7 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 
-import pl.example.budget.R;
+import pl.cyfrogen.budget.R;
 
 public class GUIUtils {
 

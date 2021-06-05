@@ -9,12 +9,12 @@ import android.support.v4.app.FragmentActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import pl.cyfrogen.moneyTracker.firebase.models.WalletEntry;
+import pl.cyfrogen.moneyTracker.firebase.models.User;
 
-public class WalletEntriesViewModelFactory implements ViewModelProvider.Factory {
+public class UserProfileViewModelFactory implements ViewModelProvider.Factory {
     private String uid;
 
-    private WalletEntriesViewModelFactory(String uid) {
+    private UserProfileViewModelFactory(String uid) {
         this.uid = uid;
 
     }
@@ -25,23 +25,23 @@ public class WalletEntriesViewModelFactory implements ViewModelProvider.Factory 
     }
 
     public static Model getModel(String uid, FragmentActivity activity) {
-        return ViewModelProviders.of(activity, new WalletEntriesViewModelFactory(uid)).get(Model.class);
+        return ViewModelProviders.of(activity, new UserProfileViewModelFactory(uid)).get(Model.class);
     }
 
     public static class Model extends ViewModel {
-        private final FirebaseQueryLiveDataSet<WalletEntry> liveData;
+        private final FirebaseQueryLiveDataElement<User> liveData;
 
         public Model(String uid) {
-            liveData = new FirebaseQueryLiveDataSet<>(WalletEntry.class, FirebaseDatabase.getInstance().getReference()
-                    .child("wallet-entries").child(uid).child("default").orderByChild("timestamp"));
+            liveData = new FirebaseQueryLiveDataElement<>(User.class, FirebaseDatabase.getInstance().getReference()
+                    .child("users").child(uid));
         }
 
-        public void observe(LifecycleOwner owner, Observer<ListDataSet<WalletEntry>> observer) {
+        public void observe(LifecycleOwner owner, Observer<User> observer) {
             observer.onChanged(liveData.getValue());
             liveData.observe(owner, observer);
         }
 
-        public void removeObserver(Observer<ListDataSet<WalletEntry>> observer) {
+        public void removeObserver(Observer<User> observer) {
             liveData.removeObserver(observer);
         }
     }
