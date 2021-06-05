@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import pl.cyfrogen.budget.R;
+import pl.project.budget.R;
 
 public class ItemCategoriesListViewAdapter extends ArrayAdapter<CategoryModelHome> implements View.OnClickListener {
 

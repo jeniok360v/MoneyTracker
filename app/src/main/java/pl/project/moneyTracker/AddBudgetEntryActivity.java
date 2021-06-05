@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -35,10 +35,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import pl.cyfrogen.moneyTracker.activityModels.CircullarRevealActivity;
-import pl.cyfrogen.moneyTracker.firebase.models.EntryCategory;
-import pl.cyfrogen.moneyTracker.firebase.models.WalletEntry;
-import pl.cyfrogen.budget.R;
+import pl.project.moneyTracker.activityModels.CircullarRevealActivity;
+import pl.project.moneyTracker.firebase.models.EntryCategory;
+import pl.project.moneyTracker.firebase.models.WalletEntry;
+import pl.project.budget.R;
 
 public class AddBudgetEntryActivity extends CircullarRevealActivity {
 

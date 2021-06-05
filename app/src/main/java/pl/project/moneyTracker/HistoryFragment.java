@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
@@ -23,11 +23,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import pl.cyfrogen.moneyTracker.firebase.ListDataSet;
-import pl.cyfrogen.moneyTracker.firebase.models.WalletEntry;
-import pl.cyfrogen.budget.R;
-import pl.cyfrogen.moneyTracker.firebase.Operation;
-import pl.cyfrogen.moneyTracker.firebase.WalletEntriesViewModelFactory;
+import pl.project.moneyTracker.firebase.ListDataSet;
+import pl.project.moneyTracker.firebase.models.WalletEntry;
+import pl.project.budget.R;
+import pl.project.moneyTracker.firebase.Operation;
+import pl.project.moneyTracker.firebase.WalletEntriesViewModelFactory;
 
 public class HistoryFragment extends BaseFragment {
     public static final CharSequence TITLE = "History";

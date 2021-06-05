@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.app.ActivityOptions;
 import android.arch.lifecycle.Observer;
@@ -25,13 +25,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import pl.cyfrogen.moneyTracker.firebase.ListDataSet;
-import pl.cyfrogen.moneyTracker.firebase.models.User;
-import pl.cyfrogen.moneyTracker.firebase.models.WalletEntry;
-import pl.cyfrogen.moneyTracker.libraries.Gauge;
-import pl.cyfrogen.budget.R;
-import pl.cyfrogen.moneyTracker.firebase.UserProfileViewModelFactory;
-import pl.cyfrogen.moneyTracker.firebase.WalletEntriesViewModelFactory;
+import pl.project.moneyTracker.firebase.ListDataSet;
+import pl.project.moneyTracker.firebase.models.User;
+import pl.project.moneyTracker.firebase.models.WalletEntry;
+import pl.project.moneyTracker.libraries.Gauge;
+import pl.project.budget.R;
+import pl.project.moneyTracker.firebase.UserProfileViewModelFactory;
+import pl.project.moneyTracker.firebase.WalletEntriesViewModelFactory;
 
 public class HomeFragment extends BaseFragment {
     private User userData;

@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker.firebase;
+package pl.project.moneyTracker.firebase;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import pl.cyfrogen.moneyTracker.firebase.models.WalletEntry;
+import pl.project.moneyTracker.firebase.models.WalletEntry;
 
 public class WalletEntriesViewModelFactory implements ViewModelProvider.Factory {
     private String uid;

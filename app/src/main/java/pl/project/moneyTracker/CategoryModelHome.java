@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 public class CategoryModelHome {
     private long money;

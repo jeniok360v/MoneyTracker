@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("pl.cyfrogen.budget", appContext.getPackageName());
+        assertEquals("pl.project.budget", appContext.getPackageName());
     }
 }

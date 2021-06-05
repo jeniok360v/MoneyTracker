@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker.libraries;
+package pl.project.moneyTracker.libraries;
 
 
 public interface OnRevealAnimationListener {

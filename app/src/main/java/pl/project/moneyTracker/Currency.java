@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 public class Currency {
     public static final Currency USD = new Currency("$", true);

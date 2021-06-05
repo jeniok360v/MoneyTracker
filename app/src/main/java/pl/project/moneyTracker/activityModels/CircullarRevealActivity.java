@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker.activityModels;
+package pl.project.moneyTracker.activityModels;
 
 import android.os.Build;
 import android.os.Handler;
@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import pl.cyfrogen.moneyTracker.libraries.GUIUtils;
-import pl.cyfrogen.moneyTracker.libraries.OnRevealAnimationListener;
-import pl.cyfrogen.moneyTracker.BaseActivity;
-import pl.cyfrogen.budget.R;
+import pl.project.moneyTracker.libraries.GUIUtils;
+import pl.project.moneyTracker.libraries.OnRevealAnimationListener;
+import pl.project.moneyTracker.BaseActivity;
+import pl.project.budget.R;
 
 public abstract class CircullarRevealActivity extends BaseActivity {
     private final int layoutID;

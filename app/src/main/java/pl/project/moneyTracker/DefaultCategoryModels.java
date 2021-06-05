@@ -1,8 +1,8 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.graphics.Color;
 
-import pl.cyfrogen.budget.R;
+import pl.project.budget.R;
 
 public  class DefaultCategoryModels {
     private static CategoryModel[] categoryModels = new CategoryModel[]{

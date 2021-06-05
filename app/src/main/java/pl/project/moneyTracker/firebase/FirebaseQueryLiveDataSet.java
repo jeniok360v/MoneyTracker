@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker.firebase;
+package pl.project.moneyTracker.firebase;
 
 import android.arch.lifecycle.LiveData;
 

@@ -1,4 +1,4 @@
-package pl.cyfrogen.moneyTracker;
+package pl.project.moneyTracker;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import pl.cyfrogen.budget.R;
+import pl.project.budget.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 
