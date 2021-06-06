@@ -2,7 +2,14 @@ package pl.cyfrogen.budget.models;
 
 import android.graphics.Color;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import pl.cyfrogen.budget.R;
+import pl.cyfrogen.budget.firebase.models.User;
+import pl.cyfrogen.budget.firebase.models.WalletEntryCategory;
 
 public  class DefaultCategories {
     private static Category[] categories = new Category[]{
@@ -31,14 +38,8 @@ public  class DefaultCategories {
                 Color.parseColor("#26a69a"));
     }
 
-    public static Category searchCategory(String categoryName) {
-        for(Category category : categories) {
-            if(category.getCategoryID().equals(categoryName)) return category;
-        }
-        return createDefaultCategoryModel(categoryName);
-    }
 
-    public static Category[] getCategories() {
+    public static Category[] getDefaultCategories() {
         return categories;
     }
 }

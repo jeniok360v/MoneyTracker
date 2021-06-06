@@ -34,6 +34,7 @@ import pl.cyfrogen.budget.firebase.FirebaseObserver;
 import pl.cyfrogen.budget.firebase.viewmodel_factories.UserProfileViewModelFactory;
 import pl.cyfrogen.budget.firebase.models.User;
 import pl.cyfrogen.budget.firebase.viewmodel_factories.WalletEntryViewModelFactory;
+import pl.cyfrogen.budget.models.CategoriesHelper;
 import pl.cyfrogen.budget.models.Category;
 import pl.cyfrogen.budget.ui.add_entry.NewEntryCategoriesAdapter;
 import pl.cyfrogen.budget.ui.add_entry.NewEntryTypeListViewModel;
@@ -104,11 +105,7 @@ public class EditWalletEntryActivity extends BaseActivity {
         });
 
 
-        final List<Category> categories = Arrays.asList(DefaultCategories.getCategories());
-        NewEntryCategoriesAdapter categoryAdapter = new NewEntryCategoriesAdapter(this,
-                R.layout.new_entry_type_spinner_row, categories);
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        selectCategorySpinner.setAdapter(categoryAdapter);
+
         editEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +163,12 @@ public class EditWalletEntryActivity extends BaseActivity {
 
     public void onDataGot() {
         if (walletEntry == null || user == null) return;
+
+        final List<Category> categories = CategoriesHelper.getCategories(user);
+        NewEntryCategoriesAdapter categoryAdapter = new NewEntryCategoriesAdapter(this,
+                R.layout.new_entry_type_spinner_row, categories);
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selectCategorySpinner.setAdapter(categoryAdapter);
 
         CurrencyHelper.setupAmountEditText(selectAmountEditText, user);
         choosedDate.setTimeInMillis(-walletEntry.timestamp);

@@ -30,6 +30,7 @@ import pl.cyfrogen.budget.firebase.FirebaseElement;
 import pl.cyfrogen.budget.firebase.FirebaseObserver;
 import pl.cyfrogen.budget.firebase.viewmodel_factories.UserProfileViewModelFactory;
 import pl.cyfrogen.budget.firebase.models.User;
+import pl.cyfrogen.budget.models.CategoriesHelper;
 import pl.cyfrogen.budget.models.Category;
 import pl.cyfrogen.budget.util.CurrencyHelper;
 import pl.cyfrogen.budget.models.DefaultCategories;
@@ -38,7 +39,6 @@ import pl.cyfrogen.budget.firebase.models.WalletEntry;
 
 public class AddWalletEntryActivity extends CircullarRevealActivity {
 
-    private Button addEntryButton;
     private Spinner selectCategorySpinner;
     private TextInputEditText selectNameEditText;
     private Calendar choosedDate;
@@ -61,7 +61,7 @@ public class AddWalletEntryActivity extends CircullarRevealActivity {
         selectCategorySpinner = findViewById(R.id.select_category_spinner);
         selectNameEditText = findViewById(R.id.select_name_edittext);
         selectTypeSpinner = findViewById(R.id.select_type_spinner);
-        addEntryButton = findViewById(R.id.add_entry_button);
+        Button addEntryButton = findViewById(R.id.add_entry_button);
         chooseTimeTextView = findViewById(R.id.choose_time_textview);
         chooseDayTextView = findViewById(R.id.choose_day_textview);
         selectAmountEditText = findViewById(R.id.select_amount_edittext);
@@ -73,7 +73,7 @@ public class AddWalletEntryActivity extends CircullarRevealActivity {
             public void onChanged(FirebaseElement<User> firebaseElement) {
                 if(firebaseElement.hasNoError()) {
                     user = firebaseElement.getElement();
-                    CurrencyHelper.setupAmountEditText(selectAmountEditText, user);
+                    onDataGot();
                 }
             }
         });
@@ -104,11 +104,6 @@ public class AddWalletEntryActivity extends CircullarRevealActivity {
         });
 
 
-        final List<Category> categories = Arrays.asList(DefaultCategories.getCategories());
-        NewEntryCategoriesAdapter categoryAdapter = new NewEntryCategoriesAdapter(this,
-                R.layout.new_entry_type_spinner_row, categories);
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        selectCategorySpinner.setAdapter(categoryAdapter);
         addEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +118,18 @@ public class AddWalletEntryActivity extends CircullarRevealActivity {
 
     }
 
+    private void onDataGot() {
+        if(user == null) return;
+
+        final List<Category> categories = CategoriesHelper.getCategories(user);
+        NewEntryCategoriesAdapter categoryAdapter = new NewEntryCategoriesAdapter(this,
+                R.layout.new_entry_type_spinner_row, categories);
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selectCategorySpinner.setAdapter(categoryAdapter);
+
+        CurrencyHelper.setupAmountEditText(selectAmountEditText, user);
+
+    }
 
 
     private void updateDate() {

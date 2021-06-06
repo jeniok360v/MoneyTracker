@@ -1,7 +1,10 @@
 package pl.cyfrogen.budget.ui.main;
 
 import android.app.ActivityOptions;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.support.design.widget.AppBarLayout;
@@ -17,11 +20,6 @@ import pl.cyfrogen.budget.ui.add_entry.AddWalletEntryActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private TabLayout tabLayout;
-    private FloatingActionButton addEntryButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +27,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(findViewById(R.id.toolbar));
 
-        addEntryButton = findViewById(R.id.add_wallet_entry_fab);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("pl.cyfrogen.budget.ACTION_LOGOUT");
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                finish();
+            }
+        }, intentFilter);
+
+        FloatingActionButton addEntryButton = findViewById(R.id.add_wallet_entry_fab);
         addEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewPager = findViewById(R.id.pager);
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.pager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -59,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tabLayout = findViewById(R.id.tab);
+        TabLayout tabLayout = findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
 
 
