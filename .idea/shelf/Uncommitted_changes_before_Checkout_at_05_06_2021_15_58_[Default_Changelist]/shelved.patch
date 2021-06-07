@@ -1,0 +1,304 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\n\r\nbuildscript {\r\n    \r\n    repositories {\r\n        google()\r\n        jcenter()\r\n\r\n    }\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:3.2.1'\r\n        classpath 'com.google.gms:google-services:4.0.2'\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n        maven { url 'https://jitpack.io' }\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ build.gradle	(date 1622849226326)
+@@ -8,8 +8,9 @@
+ 
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
+-        classpath 'com.google.gms:google-services:4.0.2'
++        classpath 'com.android.tools.build:gradle:4.1.3'
++        classpath 'com.google.gms:google-services:4.3.8'
++
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+@@ -27,3 +28,22 @@
+ task clean(type: Delete) {
+     delete rootProject.buildDir
+ }
++plugins {
++    id 'org.jetbrains.kotlin.jvm' version '1.5.20-M1'
++}
++repositories {
++    mavenCentral()
++}
++dependencies {
++    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
++}
++compileKotlin {
++    kotlinOptions {
++        jvmTarget = "1.8"
++    }
++}
++compileTestKotlin {
++    kotlinOptions {
++        jvmTarget = "1.8"
++    }
++}
+\ No newline at end of file
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Project-wide Gradle settings.\r\n# IDE (e.g. Android Studio) users:\r\n# Gradle settings configured through the IDE *will override*\r\n# any settings specified in this file.\r\n# For more details on how to configure your build environment visit\r\n# http://www.gradle.org/docs/current/userguide/build_environment.html\r\n# Specifies the JVM arguments used for the daemon process.\r\n# The setting is particularly useful for tweaking memory settings.\r\norg.gradle.jvmargs=-Xmx1536m\r\n# When configured, Gradle will run in incubating parallel mode.\r\n# This option should only be used with decoupled projects. More details, visit\r\n# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects\r\n# org.gradle.parallel=true\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- gradle.properties	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ gradle.properties	(date 1622841557450)
+@@ -1,15 +1,16 @@
+-# Project-wide Gradle settings.
+-# IDE (e.g. Android Studio) users:
+-# Gradle settings configured through the IDE *will override*
+-# any settings specified in this file.
+-# For more details on how to configure your build environment visit
++## For more details on how to configure your build environment visit
+ # http://www.gradle.org/docs/current/userguide/build_environment.html
++#
+ # Specifies the JVM arguments used for the daemon process.
+ # The setting is particularly useful for tweaking memory settings.
+-org.gradle.jvmargs=-Xmx1536m
++# Default value: -Xmx1024m -XX:MaxPermSize=256m
++# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
++#
+ # When configured, Gradle will run in incubating parallel mode.
+ # This option should only be used with decoupled projects. More details, visit
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+ # org.gradle.parallel=true
++#Fri Jun 04 23:19:10 CEST 2021
+ 
+-
++android.useAndroidX=true
++org.gradle.jvmargs=-Xmx1536m
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 28\r\n    defaultConfig {\r\n        applicationId \"pl.cyfrogen.budget\"\r\n        minSdkVersion 21\r\n        targetSdkVersion 28\r\n        versionCode 103\r\n        versionName \"1.03\"\r\n        testInstrumentationRunner \"android.support.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled true\r\n            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = '1.8'\r\n        targetCompatibility = '1.8'\r\n    }\r\n    packagingOptions {\r\n        exclude 'META-INF/proguard/androidx-annotations.pro'\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n    implementation 'com.android.support:appcompat-v7:28.0.0'\r\n    implementation 'com.android.support.constraint:constraint-layout:1.1.3'\r\n    implementation 'com.android.support:design:28.0.0'\r\n    implementation 'com.android.support:support-v4:28.0.0'\r\n    implementation 'com.android.support:preference-v7:28.0.0'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'com.android.support.test:runner:1.0.2'\r\n    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'\r\n    implementation 'com.google.firebase:firebase-database:16.0.5'\r\n    implementation 'com.google.firebase:firebase-auth:16.1.0'\r\n    implementation 'com.google.firebase:firebase-core:16.0.6'\r\n    implementation 'com.google.android.gms:play-services-auth:16.0.1'\r\n    implementation \"android.arch.lifecycle:extensions:1.1.1\"\r\n    implementation \"android.arch.lifecycle:viewmodel:1.1.1\"\r\n    implementation 'com.leavjenn.smoothdaterangepicker:library:0.2.0'\r\n    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'\r\n    implementation 'com.pes.materialcolorpicker:library:1.0.2'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ app/build.gradle	(date 1622840927759)
+@@ -43,6 +43,7 @@
+     implementation "android.arch.lifecycle:extensions:1.1.1"
+     implementation "android.arch.lifecycle:viewmodel:1.1.1"
+     implementation 'com.leavjenn.smoothdaterangepicker:library:0.2.0'
+-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+     implementation 'com.pes.materialcolorpicker:library:1.0.2'
++    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
++
+ }
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>distributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-4.6-all.zip\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1622811669472)
+@@ -1,5 +1,6 @@
++#Fri Jun 04 14:57:19 CEST 2021
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.6-all.zip
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"NullableNotNullManager\">\r\n    <option name=\"myDefaultNullable\" value=\"android.support.annotation.Nullable\" />\r\n    <option name=\"myDefaultNotNull\" value=\"android.support.annotation.NonNull\" />\r\n    <option name=\"myNullables\">\r\n      <value>\r\n        <list size=\"7\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.Nullable\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nullable\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"javax.annotation.CheckForNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.Nullable\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.Nullable\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.Nullable\" />\r\n          <item index=\"6\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNullable\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n    <option name=\"myNotNulls\">\r\n      <value>\r\n        <list size=\"6\">\r\n          <item index=\"0\" class=\"java.lang.String\" itemvalue=\"org.jetbrains.annotations.NotNull\" />\r\n          <item index=\"1\" class=\"java.lang.String\" itemvalue=\"javax.annotation.Nonnull\" />\r\n          <item index=\"2\" class=\"java.lang.String\" itemvalue=\"edu.umd.cs.findbugs.annotations.NonNull\" />\r\n          <item index=\"3\" class=\"java.lang.String\" itemvalue=\"android.support.annotation.NonNull\" />\r\n          <item index=\"4\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.NonNull\" />\r\n          <item index=\"5\" class=\"java.lang.String\" itemvalue=\"androidx.annotation.RecentlyNonNull\" />\r\n        </list>\r\n      </value>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ .idea/misc.xml	(date 1622809814754)
+@@ -29,7 +29,7 @@
+       </value>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: app/src/main/res/layout/favorites_listview_row.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><android.support.constraint.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"72dp\"\r\n    android:orientation=\"vertical\"\r\n    android:paddingLeft=\"16dp\"\r\n    android:paddingTop=\"16dp\"\r\n    android:paddingRight=\"16dp\"\r\n    android:paddingBottom=\"16dp\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/icon_imageview\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:background=\"@drawable/icon_background_circle\"\r\n        android:src=\"@drawable/category_briefcase\"\r\n        android:tint=\"#FFFFFF\"\r\n        android:backgroundTint=\"@color/colorPrimary\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/item_sum\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_centerVertical=\"true\"\r\n        android:text=\"23$\"\r\n        android:textSize=\"18sp\"\r\n        android:textColor=\"@color/primary_text_income\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/item_category\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentTop=\"true\"\r\n        android:layout_centerVertical=\"true\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"Category\"\r\n        android:textColor=\"@color/primary_text_material_light\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/item_sum\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/icon_imageview\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/favorites_listview_row.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ app/src/main/res/layout/favorites_listview_row.xml	(date 1622811379127)
+@@ -18,7 +18,7 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         android:background="@drawable/icon_background_circle"
+-        android:src="@drawable/category_briefcase"
++        app:srcCompat="@drawable/category_briefcase"
+         android:tint="#FFFFFF"
+         android:backgroundTint="@color/colorPrimary"/>
+ 
+Index: .idea/compiler.xml
+===================================================================
+--- .idea/compiler.xml	(date 1622809654762)
++++ .idea/compiler.xml	(date 1622809654762)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="1.8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+===================================================================
+--- .idea/jarRepositories.xml	(date 1622809814800)
++++ .idea/jarRepositories.xml	(date 1622809814800)
+@@ -0,0 +1,45 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="BintrayJCenter" />
++      <option name="name" value="BintrayJCenter" />
++      <option name="url" value="https://jcenter.bintray.com/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="maven" />
++      <option name="name" value="maven" />
++      <option name="url" value="https://jitpack.io" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="Google" />
++      <option name="name" value="Google" />
++      <option name="url" value="https://dl.google.com/dl/android/maven2/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="C:\Users\User\AppData\Local\Android\Sdk\extras\m2repository" />
++      <option name="name" value="C:\Users\User\AppData\Local\Android\Sdk\extras\m2repository" />
++      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/m2repository" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="C:\Users\User\AppData\Local\Android\Sdk\extras\google\m2repository" />
++      <option name="name" value="C:\Users\User\AppData\Local\Android\Sdk\extras\google\m2repository" />
++      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/google/m2repository" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="C:\Users\User\AppData\Local\Android\Sdk\extras\android\m2repository" />
++      <option name="name" value="C:\Users\User\AppData\Local\Android\Sdk\extras\android\m2repository" />
++      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/android/m2repository" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/new_entry_type_spinner_row.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><android.support.constraint.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"72dp\"\r\n    android:orientation=\"vertical\"\r\n    android:paddingLeft=\"16dp\"\r\n    android:paddingTop=\"16dp\"\r\n    android:paddingRight=\"16dp\"\r\n    android:paddingBottom=\"16dp\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/icon_imageview\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:padding=\"10dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:background=\"@drawable/icon_background_circle\"\r\n        android:src=\"@drawable/category_briefcase\"\r\n        android:tint=\"#FFFFFF\"\r\n        android:backgroundTint=\"@color/colorPrimary\"/>\r\n\r\n    <TextView\r\n        android:id=\"@+id/item_category\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentTop=\"true\"\r\n        android:layout_centerVertical=\"true\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:text=\"Category\"\r\n        android:textColor=\"@color/primary_text_material_light\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/icon_imageview\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n\r\n</android.support.constraint.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/new_entry_type_spinner_row.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ app/src/main/res/layout/new_entry_type_spinner_row.xml	(date 1622811378245)
+@@ -18,7 +18,7 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         android:background="@drawable/icon_background_circle"
+-        android:src="@drawable/category_briefcase"
++        app:srcCompat="@drawable/category_briefcase"
+         android:tint="#FFFFFF"
+         android:backgroundTint="@color/colorPrimary"/>
+ 
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ .idea/gradle.xml	(date 1622809641731)
+@@ -1,8 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
++        <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="modules">
+@@ -12,6 +14,7 @@
+           </set>
+         </option>
+         <option name="resolveModulePerSourceSet" value="false" />
++        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: app/src/main/res/layout/history_listview_row.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><android.support.v7.widget.CardView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_margin=\"5dp\"\r\n    android:elevation=\"10dp\"\r\n    android:clickable=\"true\"\r\n    android:focusable=\"true\"\r\n    android:foreground=\"?android:attr/selectableItemBackground\">\r\n\r\n    <android.support.constraint.ConstraintLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"92dp\"\r\n        android:orientation=\"vertical\"\r\n        android:paddingLeft=\"16dp\"\r\n        android:paddingTop=\"16dp\"\r\n        android:paddingRight=\"16dp\"\r\n        android:paddingBottom=\"16dp\">\r\n\r\n        <ImageView\r\n            android:id=\"@+id/icon_imageview\"\r\n            android:layout_width=\"40dp\"\r\n            android:layout_height=\"40dp\"\r\n            android:padding=\"10dp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            android:background=\"@drawable/icon_background_circle\"\r\n            android:src=\"@drawable/category_briefcase\"\r\n            android:tint=\"#FFFFFF\"\r\n            android:backgroundTint=\"@color/colorPrimary\"/>\r\n\r\n        <TextView\r\n            android:id=\"@+id/money_textview\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:text=\"23$\"\r\n            android:textColor=\"@color/primary_text_material_light\"\r\n            android:textSize=\"18sp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/category_textview\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentTop=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginEnd=\"16dp\"\r\n            android:text=\"Foods\"\r\n            android:textColor=\"@color/primary_text_material_light\"\r\n            android:textSize=\"16sp\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/money_textview\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/icon_imageview\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/date_textview\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentTop=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginEnd=\"16dp\"\r\n            android:text=\"15.12.2018 15:00\"\r\n            android:textColor=\"@color/secondary_text_material_light\"\r\n            android:textSize=\"14sp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/money_textview\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/icon_imageview\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/name_textview\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentTop=\"true\"\r\n            android:layout_centerVertical=\"true\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginEnd=\"16dp\"\r\n            android:text=\"Kebab\"\r\n            android:textColor=\"@color/secondary_text_material_light\"\r\n            android:textSize=\"14sp\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/money_textview\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/icon_imageview\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/category_textview\" />\r\n\r\n\r\n    </android.support.constraint.ConstraintLayout>\r\n</android.support.v7.widget.CardView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/history_listview_row.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ app/src/main/res/layout/history_listview_row.xml	(date 1622811378431)
+@@ -7,7 +7,7 @@
+     android:elevation="10dp"
+     android:clickable="true"
+     android:focusable="true"
+-    android:foreground="?android:attr/selectableItemBackground">
++    android:foreground="?attr/selectableItemBackground">
+ 
+     <android.support.constraint.ConstraintLayout
+         android:layout_width="match_parent"
+@@ -27,7 +27,7 @@
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             android:background="@drawable/icon_background_circle"
+-            android:src="@drawable/category_briefcase"
++            app:srcCompat="@drawable/category_briefcase"
+             android:tint="#FFFFFF"
+             android:backgroundTint="@color/colorPrimary"/>
+ 
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"pl.cyfrogen.budget\">\r\n\r\n    <application\r\n        android:name=\".FirebaseHandler\"\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/MaterialTheme\">\r\n        <activity\r\n            android:name=\".ui.splash_screen.SplashActivity\"\r\n            android:theme=\"@style/SplashTheme\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n                <action android:name=\"android.intent.action.VIEW\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.signin.SignInActivity\"\r\n            android:screenOrientation=\"portrait\" />\r\n        <activity\r\n            android:name=\".ui.main.MainActivity\"\r\n            android:screenOrientation=\"portrait\" />\r\n        <activity\r\n            android:name=\".ui.add_entry.AddWalletEntryActivity\"\r\n            android:screenOrientation=\"portrait\">\r\n            <meta-data\r\n                android:name=\"android.support.PARENT_ACTIVITY\"\r\n                android:value=\".ui.main.MainActivity\" />\r\n        </activity>\r\n        <activity android:name=\".ui.options.OptionsActivity\"\r\n            android:screenOrientation=\"portrait\" >\r\n            <meta-data\r\n                android:name=\"android.support.PARENT_ACTIVITY\"\r\n                android:value=\".ui.main.MainActivity\" />\r\n        </activity>\r\n        <activity android:name=\".ui.main.history.edit_entry.EditWalletEntryActivity\">\r\n            <meta-data\r\n                android:name=\"android.support.PARENT_ACTIVITY\"\r\n                android:value=\".ui.main.MainActivity\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.options.categories.CustomCategoriesActivity\"\r\n            android:screenOrientation=\"portrait\" />\r\n        <activity\r\n            android:name=\".ui.options.categories.AddCustomCategoryActivity\"\r\n            android:screenOrientation=\"portrait\" />\r\n        <activity\r\n            android:name=\".ui.options.categories.EditCustomCategoryActivity\"\r\n            android:screenOrientation=\"portrait\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 90053cd17a7627fa595e1a72a7fd8e41d61b7ab3)
++++ app/src/main/AndroidManifest.xml	(date 1622815621823)
+@@ -1,6 +1,8 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="pl.cyfrogen.budget">
++    xmlns:tools="http://schemas.android.com/tools"
++    package="pl.cyfrogen.budget"
++    >
+ 
+     <application
+         android:name=".FirebaseHandler"
